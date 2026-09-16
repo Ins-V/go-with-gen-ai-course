@@ -4,7 +4,10 @@
 // Автоматичні тести дивіться у файлі greet_test.go.
 package greet
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 // Greet приймає ім'я користувача і повертає рядок привітання.
 //
@@ -14,8 +17,10 @@ import "strings"
 //   - якщо після обрізання пробілів ім'я порожнє:
 //     "Hello, stranger! Welcome to Go."
 func Greet(name string) string {
-	// TODO: реалізуйте функцію.
-	// Підказка: гляньте strings.TrimSpace для обрізання пробілів.
-	_ = strings.TrimSpace // видаліть цей рядок, коли почнете писати код
-	return ""
+	username := strings.TrimSpace(name)
+	if username == "" {
+		username = "stranger"
+	}
+
+	return fmt.Sprintf("Hello, %s! Welcome to Go.", username)
 }
