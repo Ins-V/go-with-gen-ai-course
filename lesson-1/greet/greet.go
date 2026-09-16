@@ -14,8 +14,9 @@ import "strings"
 //   - якщо після обрізання пробілів ім'я порожнє:
 //     "Hello, stranger! Welcome to Go."
 func Greet(name string) string {
-	// TODO: реалізуйте функцію.
-	// Підказка: гляньте strings.TrimSpace для обрізання пробілів.
-	_ = strings.TrimSpace // видаліть цей рядок, коли почнете писати код
-	return ""
+	trimmed := strings.TrimSpace(name)
+	if trimmed == "" {
+		return "Hello, stranger! Welcome to Go."
+	}
+	return "Hello, " + trimmed + "! Welcome to Go."
 }
