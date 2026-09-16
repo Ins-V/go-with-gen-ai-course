@@ -22,13 +22,13 @@ jobs:
       - name: Встановити Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          go-version: '1.27'
           cache: true
 
       - name: Перевірити структуру репозиторію
         run: |
           missing=0
-          for f in README.md greet/greet.go converter/converter.go; do
+          for f in README.md lesson-1/greet/greet.go lesson-1/converter/converter.go; do
             if [ ! -f "$f" ]; then
               echo "❌ Відсутній обов'язковий файл: $f"
               missing=1
