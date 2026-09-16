@@ -6,6 +6,14 @@ package converter
 
 import "errors"
 
+// Помилки, які повертає ConvertCurrency. Перевіряйте їх через errors.Is.
+var (
+	// ErrNegativeAmount повертається для від'ємної суми.
+	ErrNegativeAmount = errors.New("converter: amount must not be negative")
+	// ErrNonPositiveRate повертається для нульового або від'ємного курсу.
+	ErrNonPositiveRate = errors.New("converter: rate must be positive")
+)
+
 // ConvertCurrency конвертує amount за курсом rate.
 //
 // Правила:
@@ -13,13 +21,11 @@ import "errors"
 //   - якщо amount від'ємний — повертається помилка;
 //   - якщо rate від'ємний або дорівнює нулю — повертається помилка.
 func ConvertCurrency(amount float64, rate float64) (float64, error) {
-	// TODO: реалізуйте функцію.
 	if amount < 0 {
-		return 0, errors.New("amount must not be negative")
+		return 0, ErrNegativeAmount
 	}
 	if rate <= 0 {
-		return 0, errors.New("rate must be positive")
+		return 0, ErrNonPositiveRate
 	}
-	// TODO: замініть рядок нижче на реальний розрахунок
-	return 0, errors.New("not implemented")
+	return amount * rate, nil
 }
